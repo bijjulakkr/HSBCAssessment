@@ -52,9 +52,7 @@ public class RatesServiceImplTest {
 		List<RateEntity> list = new ArrayList<RateEntity>();
 		list.add(new RateEntity("EUR", new Rates(0.9900, 9.182, 1.1825), LocalDate.parse("2020-08-23")));
 		
-		List<RateEntity> result = new ArrayList<RateEntity>();
-		
-		
+		List<RateEntity> result = new ArrayList<RateEntity>();				
 		
 		//Mockito.when(repository.findByDateRange(Mockito.any(LocalDate.class), Mockito.any(LocalDate.class)))
 		//.thenReturn(list);

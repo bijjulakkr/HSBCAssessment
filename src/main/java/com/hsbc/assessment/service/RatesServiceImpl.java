@@ -75,6 +75,7 @@ public class RatesServiceImpl implements RatesServiceIntf {
 			return 0;
 		else
 			return 1;
+		
 	}
 
 	// verifies the records with current date exist in DB. If exists, skip the call

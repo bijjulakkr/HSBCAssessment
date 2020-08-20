@@ -14,8 +14,7 @@ public interface Ratesrepository extends JpaRepository<RateEntity, Long> {
 
 	
 	  @Query(value=" from RateEntity re where re.date between ?1 and ?2")
-	  List<RateEntity> findByDateRange(LocalDate startDate, LocalDate endDate);
-	  
+	  List<RateEntity> findByDateRange(LocalDate startDate, LocalDate endDate);	  
 	  RateEntity findByDate(LocalDate date);
 	 
 }

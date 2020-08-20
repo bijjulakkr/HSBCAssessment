@@ -11,4 +11,5 @@ public interface RatesServiceIntf {
 	int saveRatesByDay();
 	List<RateEntity> getRatesByDateRange(LocalDate dateStart, LocalDate dateEnd);
 	RateEntity getRatesByDate(LocalDate date);
+	
 }

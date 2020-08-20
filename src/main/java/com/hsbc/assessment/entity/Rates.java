@@ -18,7 +18,6 @@ public class Rates {
 		return "Rates [GBP=" + GBP + ", HKD=" + HKD + ", USD=" + USD + "]";
 	}
 
-
 	public Rates(double gBP, double hKD, double uSD) {
 		super();
 		GBP = gBP;

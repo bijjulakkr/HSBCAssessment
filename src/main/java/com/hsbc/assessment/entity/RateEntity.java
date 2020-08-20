@@ -25,7 +25,6 @@ public class RateEntity {
 		this.rates = rates;
 		this.date = date;
 	}
-
 	@Override
 	public String toString() {
 		return "RateEntity [base=" + base + ", rates=" + rates + ", date=" + date + "]";

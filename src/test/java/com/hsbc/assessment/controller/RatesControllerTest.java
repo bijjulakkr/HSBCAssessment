@@ -59,10 +59,8 @@ public class RatesControllerTest {
 
 		Mockito.when(service.getRatesByDateRange(Mockito.any(LocalDate.class), Mockito.any(LocalDate.class)))
 				.thenReturn(list);
-
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/getRatesByDateRange/2019-08-21")
 				.accept(MediaType.APPLICATION_JSON);
-
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
 		String expected = "[{\"base\":\"EUR\",\"rates\":{\"GBP\":0.99,\"HKD\":9.182,\"USD\":1.1825},\"date\":\"2020-08-23\"}]";

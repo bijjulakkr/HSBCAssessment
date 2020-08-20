@@ -12,7 +12,8 @@ public class RatesDAO {
 	@Autowired
 	Ratesrepository repository;
 	public List<RateEntity> getRatesByDate(LocalDate date1, LocalDate date2){
-		return repository.findByDateRange(date1, date2);		
+		return repository.findByDateRange(date1, date2);
+		
 	}
 
 }

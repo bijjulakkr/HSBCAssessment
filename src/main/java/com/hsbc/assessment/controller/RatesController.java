@@ -52,7 +52,6 @@ public class RatesController {
 	public List<RateEntity> getRatesByDateRange(@PathVariable String dateRange) {
 		LocalDate date2 = LocalDateTime.now().toLocalDate().withDayOfMonth(1);
 		LocalDate date1 = LocalDate.parse(dateRange).withDayOfMonth(1);
-
 		return service.getRatesByDateRange(date1, date2);
 	}
 
