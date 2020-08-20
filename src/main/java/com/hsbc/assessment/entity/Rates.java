@@ -13,6 +13,20 @@ import lombok.Data;
 @Embeddable
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class Rates {
+	@Override
+	public String toString() {
+		return "Rates [GBP=" + GBP + ", HKD=" + HKD + ", USD=" + USD + "]";
+	}
+
+
+	public Rates(double gBP, double hKD, double uSD) {
+		super();
+		GBP = gBP;
+		HKD = hKD;
+		USD = uSD;
+	}
+
+
 	@JsonProperty(value ="GBP")
 	private double GBP;
 	@JsonProperty(value="HKD")

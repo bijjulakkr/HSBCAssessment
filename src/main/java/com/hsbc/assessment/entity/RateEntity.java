@@ -19,6 +19,18 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class RateEntity {
 	
 	
+	public RateEntity(String base, Rates rates, LocalDate date) {
+		super();
+		this.base = base;
+		this.rates = rates;
+		this.date = date;
+	}
+
+	@Override
+	public String toString() {
+		return "RateEntity [base=" + base + ", rates=" + rates + ", date=" + date + "]";
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long Id;
