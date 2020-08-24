@@ -35,13 +35,13 @@ public class RatesControllerTest {
 	@MockBean
 	private RatesServiceIntf service;
 
-	RateEntity mockRateEntity = new RateEntity("EUR", new Rates(0.9900, 9.182, 1.1825), LocalDate.parse("2020-08-23"));
+	//RateEntity mockRateEntity = new RateEntity("EUR", new Rates(0.9900, 9.182, 1.1825), LocalDate.parse("2020-08-23"));
 
 	@Test
 	public void setRatesTest() throws Exception {
 		Mockito.when(service.saveRates()).thenReturn(1);
 
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/setRates").accept(MediaType.APPLICATION_JSON);
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/GetCurrencyRates").accept(MediaType.APPLICATION_JSON);
 
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
@@ -59,7 +59,7 @@ public class RatesControllerTest {
 
 		Mockito.when(service.getRatesByDateRange(Mockito.any(LocalDate.class), Mockito.any(LocalDate.class)))
 				.thenReturn(list);
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/getRatesByDateRange/2019-08-21")
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/GetCurrencyRates/2019-08-21")
 				.accept(MediaType.APPLICATION_JSON);
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 

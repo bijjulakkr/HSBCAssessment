@@ -7,10 +7,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Data
 @AllArgsConstructor
 @Embeddable
+@Setter
+@Getter
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class Rates {
 	@Override
@@ -18,12 +22,10 @@ public class Rates {
 		return "Rates [GBP=" + GBP + ", HKD=" + HKD + ", USD=" + USD + "]";
 	}
 
-	public Rates(double gBP, double hKD, double uSD) {
-		super();
-		GBP = gBP;
-		HKD = hKD;
-		USD = uSD;
-	}
+	/*
+	 * public Rates(double gBP, double hKD, double uSD) { super(); GBP = gBP; HKD =
+	 * hKD; USD = uSD; }
+	 */
 
 
 	@JsonProperty(value ="GBP")

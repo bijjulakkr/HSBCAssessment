@@ -18,23 +18,30 @@ import org.springframework.web.client.RestTemplate;
 import com.hsbc.assessment.entity.RateEntity;
 import com.hsbc.assessment.repository.Ratesrepository;
 
+import lombok.AllArgsConstructor;
+@AllArgsConstructor
 @Service
 public class RatesServiceImpl implements RatesServiceIntf {
 
-	@Autowired
-	private Ratesrepository repository;
-
+	
+	  @Autowired private Ratesrepository repository;
+	 
+	
+	//private Ratesrepository repository;
+	
 	@Autowired
 	private RestTemplate restTemplate;
 
 	private static String symbols = "https://api.ratesapi.io/api/{date}?base=EUR&symbols=USD,GBP,HKD";
 
 	private ResponseEntity<RateEntity> re = null;
+	
+	@Autowired
+	public RatesServiceImpl(Ratesrepository repository) {}
 
 	@Override
 	public RateEntity getRatesByDate(LocalDate date) {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.findByDate(date);
 	}
 
 	@Override
@@ -70,6 +77,7 @@ public class RatesServiceImpl implements RatesServiceIntf {
 	public int saveRatesByDay() {
 		LocalDate currentDate = LocalDateTime.now().toLocalDate();
 		re = restTemplate.exchange(symbols, HttpMethod.GET, getHttpEntity(), RateEntity.class, currentDate.toString());
+		System.out.println("Response from external end-point:"+re.getBody());
 		RateEntity rntt = repository.save(re.getBody());
 		if (null == rntt)
 			return 0;
@@ -82,11 +90,11 @@ public class RatesServiceImpl implements RatesServiceIntf {
 	// to external end-point.
 	private boolean validateForDuplicates(LocalDate currentDate) {
 
-		if ((repository.findByDate(currentDate.minusMonths(1)) == null))
-			return true;
-		else
-			return false;
-
+		
+		  if ((repository.findByDate(currentDate.minusMonths(1)) == null))
+			  return true;
+		  else return false;
+		 
 	}
 
 	private HttpEntity<String> getHttpEntity() {
