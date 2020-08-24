@@ -49,18 +49,18 @@ public class RatesController {
 	}
 
 	@GetMapping("/GetCurrencyRates/{date}")
-	public List<RateEntity> getRatesByDateRange(@PathVariable String dateRange) {
+	public List<RateEntity> getRatesByDateRange(@PathVariable String date) {
 		LocalDate date2 = LocalDateTime.now().toLocalDate().withDayOfMonth(1);
-		LocalDate date1 = LocalDate.parse(dateRange).withDayOfMonth(1);
+		LocalDate date1 = LocalDate.parse(date).withDayOfMonth(1);
 		return service.getRatesByDateRange(date1, date2);
 	}
 
 	@GetMapping("/GetCurrencyRate/{date}")
-	public RateEntity getRatesByDate(@PathVariable String dateStr) {
+	public RateEntity getRatesByDate(@PathVariable String date) {
 
-		LocalDate date = LocalDate.parse(dateStr);
+		LocalDate dateL = LocalDate.parse(date);
 
-		return service.getRatesByDate(date);
+		return service.getRatesByDate(dateL);
 	}
 
 }
