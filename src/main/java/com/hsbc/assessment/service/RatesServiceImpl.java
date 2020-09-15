@@ -46,8 +46,8 @@ public class RatesServiceImpl implements RatesServiceIntf {
 
 	@Override
 	public int saveRates() {
-
-		LocalDate currentDate = LocalDateTime.now().toLocalDate().withDayOfMonth(1);
+        // Retrieving the last day of every month
+		LocalDate currentDate = LocalDateTime.now().toLocalDate().withDayOfMonth(1).minusDays(1);
 
 		List<RateEntity> rateEntityList = new ArrayList<RateEntity>();
 		int i = 0;
@@ -58,7 +58,9 @@ public class RatesServiceImpl implements RatesServiceIntf {
 						currentDate.toString());
 				rateEntityList.add(re.getBody());
 				repository.save(re.getBody());
+				System.out.println("currentDate---"+currentDate);
 				currentDate = currentDate.minusMonths(1);
+				//System.out.println("currentDate"+currentDate);
 				i++;
 			} while (i < 12);
 		}
@@ -90,7 +92,7 @@ public class RatesServiceImpl implements RatesServiceIntf {
 	// to external end-point.
 	private boolean validateForDuplicates(LocalDate currentDate) {
 
-		
+		System.out.println("currentDate.minusMonths(1)"+ currentDate.minusMonths(1));
 		  if ((repository.findByDate(currentDate.minusMonths(1)) == null))
 			  return true;
 		  else return false;
