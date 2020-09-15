@@ -57,10 +57,8 @@ public class RatesServiceImpl implements RatesServiceIntf {
 				re = restTemplate.exchange(symbols, HttpMethod.GET, getHttpEntity(), RateEntity.class,
 						currentDate.toString());
 				rateEntityList.add(re.getBody());
-				repository.save(re.getBody());
-				System.out.println("currentDate---"+currentDate);
-				currentDate = currentDate.minusMonths(1);
-				//System.out.println("currentDate"+currentDate);
+				repository.save(re.getBody());				
+				currentDate = currentDate.minusMonths(1);			
 				i++;
 			} while (i < 12);
 		}
@@ -79,7 +77,6 @@ public class RatesServiceImpl implements RatesServiceIntf {
 	public int saveRatesByDay() {
 		LocalDate currentDate = LocalDateTime.now().toLocalDate();
 		re = restTemplate.exchange(symbols, HttpMethod.GET, getHttpEntity(), RateEntity.class, currentDate.toString());
-		System.out.println("Response from external end-point:"+re.getBody());
 		RateEntity rntt = repository.save(re.getBody());
 		if (null == rntt)
 			return 0;
@@ -92,7 +89,6 @@ public class RatesServiceImpl implements RatesServiceIntf {
 	// to external end-point.
 	private boolean validateForDuplicates(LocalDate currentDate) {
 
-		System.out.println("currentDate.minusMonths(1)"+ currentDate.minusMonths(1));
 		  if ((repository.findByDate(currentDate.minusMonths(1)) == null))
 			  return true;
 		  else return false;
